@@ -1,6 +1,7 @@
 var myApp = angular.module('myApp', ['ngMessages', 'ngResource']);
 
-myApp.controller('mainController', ['$scope', '$timeout', '$filter', function($scope, $timeout, $filter) {
+myApp.controller('mainController', ['$scope', '$timeout', '$filter', '$http',
+ function($scope, $timeout, $filter, $http) {
 
   $scope.handle = "";
 
@@ -10,18 +11,19 @@ myApp.controller('mainController', ['$scope', '$timeout', '$filter', function($s
 
    $scope.characters = 5;
 
+
    $scope.rules = [
 
      { rulename: "Must be 5 characters"},
      { rulename: "Must not be used elsewhere"},
      { rulename: "Must be cool"}
-     
+
    ];
 
 }]);
-//
-// var searchPeople = function(firstName, lastName, height, age, occupation) {
-//   return 'Jane Doe';
-// };
-//
-// console.log(angular.injector().annotate(searchPeople));
+
+
+myApp.controller('secondController', ['$scope',
+ function($scope) {
+   $scope.name = 'Second';
+}]);
