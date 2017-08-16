@@ -10,6 +10,14 @@ myApp.controller('mainController', ['$scope', '$timeout', '$filter', function($s
 
    $scope.characters = 5;
 
+   $scope.rules = [
+
+     { rulename: "Must be 5 characters"},
+     { rulename: "Must not be used elsewhere"},
+     { rulename: "Must be cool"}
+     
+   ];
+
 }]);
 //
 // var searchPeople = function(firstName, lastName, height, age, occupation) {
