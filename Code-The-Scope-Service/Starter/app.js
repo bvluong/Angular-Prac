@@ -1,22 +1,24 @@
-var myApp = angular.module('myApp', ['ngMessages']);
+var myApp = angular.module('myApp', ['ngMessages', 'ngResource']);
 
-myApp.controller('mainController', function($scope, $log, $filter) {
-  $scope.name = 'Jane doe';
-  $scope.occupation = 'Coder';
-  $scope.formattedname = $filter('uppercase')($scope.name);
+myApp.controller('mainController', ['$scope', '$timeout', '$filter', function($scope, $timeout, $filter) {
 
-  console.log($scope.formattedname);
+  $scope.handle = "";
+  $scope.lowercasehandle = function() {
+     return $filter('lowercase')($scope.handle);
+   };
 
-  $scope.getname = function() {
-    return 'John Doe';
-  };
-  // console.log($log);
-  // console.log($scope);
-  // console.log($filter);
-});
+   $scope.$watch('handle', function(newVal, oldVal) {
+     console.log(newVal, oldVal);
+   });
 
-var searchPeople = function(firstName, lastName, height, age, occupation) {
-  return 'Jane Doe';
-};
 
-console.log(angular.injector().annotate(searchPeople));
+  // $timeout(function() {
+  //   $scope.name = 'Everybody';
+  // },3000);
+}]);
+//
+// var searchPeople = function(firstName, lastName, height, age, occupation) {
+//   return 'Jane Doe';
+// };
+//
+// console.log(angular.injector().annotate(searchPeople));
