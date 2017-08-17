@@ -60,7 +60,8 @@ myApp.controller('secondController', ['$scope', '$location', '$log', '$routePara
 
 myApp.directive('searchResult', function() {
   return {
-    template: '<a href="#" class="list-group-item"><h4 class="list-group-item-heading">{{ name }}</h4><p class="list-group-item-text">...</p></a>',
+    restrict: 'AEC',
+    templateUrl: 'directives/searchresult.html',
     replace: true
   };
 });
