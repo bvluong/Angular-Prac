@@ -20,18 +20,47 @@ myApp.config(function ($routeProvider) {
 
 });
 
-myApp.controller('mainController', ['$scope', '$location', '$log',
-  function($scope, $location, $log) {
+myApp.service('nameService', function() {
 
-    $scope.name = 'Main';
-    $log.info($location.path());
+  this.name = 'John Doe';
+
+  this.namelength = function() {
+    return this.name.length;
+  }.bind(this);
+
+});
+
+myApp.controller('mainController', ['$scope', '$location', '$log', 'nameService',
+  function($scope, $location, $log, nameService) {
+
+    $scope.name = nameService.name;
+
+    $scope.$watch('name', function() {
+      nameService.name = $scope.name;
+    });
+
+    $log.main = 'Property from main';
 
 }]);
 
+myApp.controller('secondController', ['$scope', '$location', '$log', '$routeParams', 'nameService',
+  function($scope, $location, $log, $routeParams, nameService) {
+    $scope.name = nameService.name;
 
-myApp.controller('secondController', ['$scope', '$location', '$log', '$routeParams',
-  function($scope, $location, $log, $routeParams) {
-    $scope.name = 'Second';
+    $scope.$watch('name', function() {
+      nameService.name = $scope.name;
+    });
+
     $scope.num = $routeParams.num || 0;
+  //
+  $log.second = 'Property from second';
 
 }]);
+
+
+myApp.directive('searchResult', function() {
+  return {
+    template: '<a href="#" class="list-group-item"><h4 class="list-group-item-heading">{{ name }}</h4><p class="list-group-item-text">...</p></a>',
+    replace: true
+  };
+});
