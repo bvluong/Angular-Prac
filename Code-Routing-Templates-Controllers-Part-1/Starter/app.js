@@ -1,5 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute']);
-
+var myApp = angular.module('myApp', ['ngRoute'] );
 myApp.config(function ($routeProvider) {
 
   $routeProvider
@@ -27,8 +26,7 @@ myApp.service('nameService', function() {
   this.namelength = function() {
     return this.name.length;
   }.bind(this);
-
-});
+  });
 
 myApp.controller('mainController', ['$scope', '$location', '$log', 'nameService',
   function($scope, $location, $log, nameService) {
